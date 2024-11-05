@@ -15,8 +15,7 @@ contract Azino777Test is BaseTest {
     }
 
     function testExploitLevel() public {
-        /* YOUR EXPLOIT GOES HERE */
-
+        instance.spin{value: 0.01 ether}(15);
         checkSuccess();
     }
 

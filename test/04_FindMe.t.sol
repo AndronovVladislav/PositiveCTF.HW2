@@ -7,6 +7,7 @@ import "src/04_FindMe/FindMe.sol";
 // forge test --match-contract FindMeTest -vvvv
 contract FindMeTest is BaseTest {
     FindMe instance;
+    address txOrigin;
 
     function setUp() public override {
         super.setUp();
@@ -17,11 +18,12 @@ contract FindMeTest is BaseTest {
         data[1] = keccak256(abi.encodePacked(tx.origin, "1"));
         data[2] = keccak256(abi.encodePacked(tx.origin, "2"));
         instance = new FindMe(setImmutable, data);
+
+        txOrigin = tx.origin;
     }
 
     function testExploitLevel() public {
-        /* YOUR EXPLOIT GOES HERE */
-
+        instance.unLock(bytes16(keccak256(abi.encodePacked(txOrigin, "1"))));
         checkSuccess();
     }
 

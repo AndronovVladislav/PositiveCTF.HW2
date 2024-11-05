@@ -15,8 +15,7 @@ contract PrivateRyanTest is BaseTest {
     }
 
     function testExploitLevel() public {
-        /* YOUR EXPLOIT GOES HERE */
-
+        instance.spin{value: 0.01 ether}(20);
         checkSuccess();
     }
 

